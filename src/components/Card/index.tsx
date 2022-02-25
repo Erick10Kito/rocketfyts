@@ -1,4 +1,4 @@
-import { useRef, useContext, useState } from "react";
+import { useRef, useContext } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Container, Label } from './styles';
 import BoardContext from '../Board/context';
@@ -21,8 +21,7 @@ interface ICardProps {
 }
 
 export default function Card({ data, index = 0, listIndex = 0 }: ICardProps) {
-    const [Vazio, setVazio] = useState(true);
-
+    //console.log(data);
     const ref = useRef<HTMLInputElement>(null);
     const { move } = useContext(BoardContext);
 

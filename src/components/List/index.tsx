@@ -1,9 +1,7 @@
-import React from "react";
 import { Container } from './styles';
 import { MdAdd } from 'react-icons/md';
 import Card from '../Card'
-import { stringify } from "querystring";
-import { ICard, IListProps } from "../../interfaces/IDND";
+import { IListProps } from "../../interfaces/IDND";
 
 interface IList {
     data: IListProps;
@@ -13,8 +11,7 @@ interface IList {
 
 
 export default function List({ data, index, listIndex }: IList) {
-
-
+    console.log(data)
     return (
         <Container style={{ opacity: data.done ? 0.6 : 1 }}>
             <header>
@@ -30,9 +27,8 @@ export default function List({ data, index, listIndex }: IList) {
             <ul>
 
                 {data.cards.length ?
-
-                    data?.cards?.map((card, index) => <Card key={card.id} index={index} listIndex={listIndex} data={card} />)
-                    : (<Card key={0} index={index} listIndex={listIndex} data={{ id: 1000, content: "" }} />)}
+                    data.cards.map((card, index) => <Card key={card.id} index={index} listIndex={listIndex} data={card} />)
+                    : (<Card key={0} index={index} listIndex={listIndex} data={{ id: Math.random(), content: "" }} />)}
             </ul>
         </Container>
 

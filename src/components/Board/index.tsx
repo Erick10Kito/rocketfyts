@@ -1,11 +1,10 @@
-import React from "react";
 import { Container } from './styles';
 import List from '../List';
 import { loadLists } from '../../services/api'
 import { useState } from 'react';
 import BoardContext from "./context";
 import produce from 'immer';
-import { IListProps, IMoveObject } from "../../interfaces/IDND";
+import { IListProps } from "../../interfaces/IDND";
 
 const data = loadLists();
 
