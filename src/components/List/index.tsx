@@ -2,6 +2,7 @@ import { Container } from './styles';
 import { MdAdd } from 'react-icons/md';
 import Card from '../Card'
 import { IListProps } from "../../interfaces/IDND";
+import CardExperimental from '../CardExperimental';
 
 interface IList {
     data: IListProps;
@@ -26,9 +27,12 @@ export default function List({ data, index, listIndex }: IList) {
 
             <ul>
 
-                {data.cards.length ?
-                    data.cards.map((card, index) => <Card key={card.id} index={index} listIndex={listIndex} data={card} />)
-                    : (<Card key={0} index={index} listIndex={listIndex} data={{ id: Math.random(), content: "" }} />)}
+
+                {
+                    data.cards.length ?
+                        data.cards.map((card, index) => <Card key={index} index={index} listIndex={listIndex} data={card} />)
+                        : (<CardExperimental listIndex={listIndex} />)
+                }
             </ul>
         </Container>
 

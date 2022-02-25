@@ -2,7 +2,7 @@ import { useRef, useContext } from "react";
 import { useDrag, useDrop } from "react-dnd";
 import { Container, Label } from './styles';
 import BoardContext from '../Board/context';
-import { ICard } from "../../interfaces/IDND";
+import { ICard, IListProps } from "../../interfaces/IDND";
 import type { XYCoord } from 'dnd-core'
 
 interface DragItem {
@@ -14,27 +14,17 @@ interface DragItem {
 }
 
 interface ICardProps {
-    data?: ICard;
+    value?: IListProps;
     index?: number;
     listIndex?: number;
 
 }
 
-export default function Card({ data, index = 0, listIndex = 0 }: ICardProps) {
+export default function CardExperimental({ index = 0, listIndex = 0 }: ICardProps) {
     //console.log(data);
     const ref = useRef<HTMLInputElement>(null);
     const { move } = useContext(BoardContext);
 
-
-
-    const [{ isDragging }, dragRef] = useDrag({
-        type: "CARD",
-        item: { index, listIndex },
-        //o tyoe nao deve estar dentro de item depois da atualização
-        collect: monitor => ({
-            isDragging: monitor.isDragging(),
-        }),
-    });
 
     const [, dropRef] = useDrop({
         accept: 'CARD',
@@ -101,32 +91,25 @@ export default function Card({ data, index = 0, listIndex = 0 }: ICardProps) {
     })
 
 
-    dragRef(dropRef(ref));
+
+    dropRef(ref)
 
 
     return (
-        <>
-            {data ? (
-                <Container ref={ref} style={{
-                    border: "2px dashed rgba(0, 0, 0, 0.2)",
-                    paddingTop: "31px",
-                    borderRadius: 0,
-                    background: "transparent",
-                    boxShadow: "none",
-                    cursor: "grabbing",
-                    touchAction: "none",
-                    userSelect: "none",
-                }}>
-                    <header>
-                        {data.labels?.map(label => <Label key={label} color={label} />)}
+        <Container ref={ref} style={{
+            border: "2px dashed rgba(0, 0, 0, 0.2)",
+            paddingTop: "31px",
+            borderRadius: 0,
+            background: "transparent",
+            boxShadow: "none",
+            cursor: "initial",
+            touchAction: "none",
+            userSelect: "none",
+        }}>
 
-                    </header>
-                    <p>{data?.content}</p>
-                    <img src={data.user ? data.user : "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png"} alt="" />
-                </Container>
-            )
-                : ""}
+            <p>Card Vazio</p>
 
-        </>
+
+        </Container>
     );
 }
