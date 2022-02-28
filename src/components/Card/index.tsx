@@ -125,7 +125,7 @@ export default function Card({ data, index = 0, listIndex = 0 }: ICardProps) {
                     <img src={data.user ? data.user : "https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/profile.png"} alt="" />
                 </Container>
             )
-                : ""}
+                : <p>error</p>}
 
         </>
     );

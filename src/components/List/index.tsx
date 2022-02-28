@@ -29,7 +29,7 @@ export default function List({ data, index, listIndex }: IList) {
 
 
                 {
-                    data.cards.length ?
+                    (data.cards.length !== 0 && [data].length) ?
                         data.cards.map((card, index) => <Card key={index} index={index} listIndex={listIndex} data={card} />)
                         : (<CardExperimental listIndex={listIndex} />)
                 }
